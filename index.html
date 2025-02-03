@@ -3,79 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Git code</title>
+    <title>Cypher Search Engine</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            font-family: Arial, sans-serif;
             background-color: #f2f2f2;
             display: flex;
-            flex-wrap:warp;
             justify-content: center;
             align-items: center;
             height: 100vh;
         }
 
         .container {
-            text-align: center;
             background-color: white;
-            padding: 30px;
+            padding: 40px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
             width: 100%;
             max-width: 600px;
         }
 
         h1 {
-            font-size: 2.5rem;
             color: #333;
+            font-size: 3rem;
             margin-bottom: 20px;
+            font-weight: bold;
         }
 
         p {
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: #555;
             margin-bottom: 20px;
         }
 
         form {
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
-            align-items: center;
             gap: 10px;
         }
 
-        input[type="search"] {
+        input {
             padding: 10px;
-            width: 60%;
             border-radius: 20px;
             border: 1px solid #ccc;
             font-size: 1rem;
             outline: none;
-            transition: border-color 0.3s ease;
         }
 
-        input[type="search"]:focus {
-            border-color: #4285F4; /* Google blue */
+        input:focus {
+            border-color: #4285F4;
         }
 
         input[type="submit"] {
-            padding: 10px 20px;
-            background-color: #4285F4; /* Google blue */
+            background-color: #4285F4;
             color: white;
-            border: none;
-            border-radius: 20px;
-            font-size: 1rem;
             cursor: pointer;
-            transition: background-color 0.3s ease;
         }
 
         input[type="submit"]:hover {
-            background-color: #357ae8; /* Slightly darker blue */
+            background-color: #357ae8;
         }
 
-        /* Responsive design */
         @media (max-width: 600px) {
             .container {
                 padding: 20px;
@@ -85,20 +77,21 @@
                 font-size: 2rem;
             }
 
-            input[type="search"] {
-                width: 80%;
+            input {
+                width: 100%;
             }
         }
     </style>
 </head>
 <body>
-    <h1>Cypher Hg</h1>
-    <p>First Git code To be published in git.</p>
-    <p>Not the first work but a chancefull code to be placed in git.</p>
-    <form action="https://google.com/search">
-        <input type="search" name="q" placeholder="enter ">
-        <input type="submit" value="Search">
-    </form>
-   
+    <div class="container">
+        <h1>Cypher HG</h1>
+        <p>Elias' First Git code To be published in git.</p>
+        <p style="font-size: small;"><strong>" Not the first work but a chancefull code to be placed in git for the first time."</strong></p>
+        <form action="https://google.com/search">
+            <input type="search" name="q" placeholder="Search here">
+            <input type="submit" value="Search">
+        </form>
+    </div>
 </body>
 </html>
