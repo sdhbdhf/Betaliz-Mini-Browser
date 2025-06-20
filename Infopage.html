@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Search Results</title>
+  <link rel="stylesheet" href="Infocss.css" />
+  <link rel="icon" href="./image.png" type="image/png">
+
+</head>
+<body>
+  <header class="top-bar">
+    <a href="SearchEngine.html"><img src="./image.png" alt="Logo" class="logo" target="_blank"/></a>
+    <h1>Betaliz </h1>
+    <form id="searchForm" role="search" class="search-form">
+      <input type="search" name="q" id="searchQuery" placeholder="Search here" aria-label="Search" required />
+      <input type="submit" value="Search" />
+    </form>
+    
+  </header>
+  <div class="art">
+      <img src="./arts.png" alt="My LOGO" />
+    </div>
+  <main class="results-container">
+    <h2>Search Results</h2>
+    <div id="results">Loading...</div>
+    
+  </main>
+<footer style="margin-top: 30px; font-size: 0.9em; color: #555;">
+            © 2025 Elias. All rights reserved.
+  </footer>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Add this to your existing script
+window.addEventListener('scroll', function() {
+  const topBar = document.querySelector('.top-bar');
+  if (window.scrollY > 1) {
+    topBar.classList.add('scrolled');
+  } else {
+    topBar.classList.remove('scrolled');
+  }
+});
+      const query = localStorage.getItem("searchQuery");
+      if (!query) {
+        window.location.href = "SearchEngine.html";
+        return;
+      }
+
+      document.getElementById("searchQuery").value = query;
+
+      const apiUrl = `https://api.duckduckgo.com/?q=${encodeURIComponent(query)}&format=json&pretty=1`;
+
+      fetch(apiUrl)
+        .then(res => res.json())
+        .then(data => {
+          const resultsContainer = document.getElementById("results");
+          resultsContainer.innerHTML = "";
+
+          const topics = data.RelatedTopics || [];
+
+          if (topics.length === 0) {
+            resultsContainer.innerHTML = "<p>No results found.</p>";
+            return;
+          }
+
+          topics.forEach(topic => {
+            let item = topic;
+            if (topic.Topics && Array.isArray(topic.Topics)) {
+              item = topic.Topics[0];
+            }
+
+            if (item && item.Text && item.FirstURL) {
+              const resultItem = document.createElement("div");
+              resultItem.classList.add("result-item");
+
+              const imgSrc = item.Icon?.URL ? `https://duckduckgo.com${item.Icon.URL}` : "https://via.placeholder.com/50";
+
+              resultItem.innerHTML = `
+                <img src="${imgSrc}" alt="thumb" class="thumb" />
+                <div class="info">
+                  <h3><a href="${item.FirstURL}" target="_blank">${item.Text}</a></h3>
+                  <small>${item.FirstURL}</small>
+                </div>
+              `;
+              resultsContainer.appendChild(resultItem);
+            }
+          });
+        })
+        .catch(err => {
+          document.getElementById("results").innerHTML = `<p>Error fetching results: ${err.message}</p>`;
+        });
+
+      // Re-search if form is used again
+      document.getElementById("searchForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+        const newQuery = document.getElementById("searchQuery").value.trim();
+        if (newQuery) {
+          localStorage.setItem("searchQuery", newQuery);
+          location.reload();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
