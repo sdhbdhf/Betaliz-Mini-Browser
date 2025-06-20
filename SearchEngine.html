@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Betaliz Home</title>
+    <link rel="shortcut icon" href="icons8-search.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="Searchengine.css" />
+    <link rel="icon" href="./image.png" type="image/png">
+
+</head>
+<body>
+    <div class="centered-container">
+       
+        <div class="logo">
+            <img src="./image.png" alt="Cypher HG Logo" />
+        </div>
+
+        <!-- Heading and description -->
+        <div class="header-content">
+            <h1>Betaliz</h1>
+            <p>Your simple, clean, and fast way to explore the web.</p>
+           <p class="quote">"Every great journey begins with a single search."</p>
+        </div>
+
+        <!-- Search form -->
+        <form id="searchForm" class="search-form" action="infopage.html" method="GET" role="search" target="_blank">
+            <input type="search" name="q" id="searchQuery" placeholder="Search here" aria-label="Search" required />
+            <input type="submit" value="Search" />
+        </form>
+        <footer style="margin-top: 30px; font-size: 0.9em; color: #555;">
+            © 2025 Elias. All rights reserved.
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById("searchForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            const query = document.getElementById("searchQuery").value;
+            localStorage.setItem("searchQuery", query);
+            window.location.href = "infopage.html";
+        });
+    </script>
+</body>
+</html>
