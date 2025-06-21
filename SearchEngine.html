@@ -23,7 +23,7 @@
            <p class="quote">"Every great journey begins with a single search."</p>
         </div>
 
-        <form id="searchForm" class="search-form" action="Infopage.html" method="GET" role="search" target="_blank">
+        <form id="searchForm" class="search-form" action="infopage.html" method="GET" role="search" target="_blank">
             <input type="search" name="q" id="searchQuery" placeholder="Search here" aria-label="Search" required />
             <input type="submit" value="Search" />
         </form>
@@ -37,7 +37,7 @@
             e.preventDefault();
             const query = document.getElementById("searchQuery").value;
             localStorage.setItem("searchQuery", query);
-            window.location.href = "Infopage.html";
+            window.location.href = "infopage.html";
         });
     </script>
 </body>
